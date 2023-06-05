@@ -307,7 +307,7 @@ named field subpatterns key and value. It calls the key getter and value getter 
 each iteration, and binds the results to local variables key and count, respectively.
 
 Binding the result of a getter call to a variable of the same name is a common use case. his allows
-you to simplify the variable pattern from something redundant like key: key to just :key:
+you to simplify the variable pattern from something redundant like `key: key` to just `:key`:
 
 ```dart 
 for (final MapEntry(:key, value: count) in hist.entries) {
