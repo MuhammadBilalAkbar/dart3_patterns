@@ -95,7 +95,7 @@ represents the shape of a set of values that it may match against actual values.
 
 **Table of contents**
 
-1. [What patterns do](#What patterns do)
+1. [What patterns do](#What-patterns-do)
     - [Matching](#Matching)
     - [Destructuring](#Destructuring)
 2. [Places patterns can appear](#Places patterns can appear)
