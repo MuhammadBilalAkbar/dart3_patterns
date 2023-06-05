@@ -489,3 +489,5 @@ lower-precedence to higher-precedence:
 13. Record (`(subpattern1, subpattern2)`, `(x: subpattern1, y: subpattern2)`)
 14. Object (`SomeClass(x: subpattern1, y: subpattern2)`)
 15. Wildcard (`_` this element is required in callback but not used inside the function)
+
+For more details visit [pattern types](https://dart.dev/language/pattern-types).
