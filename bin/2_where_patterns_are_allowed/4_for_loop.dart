@@ -4,12 +4,12 @@ void main() {
     'b': 100,
   };
 
-  // for (var MapEntry(key: key, value: count) in hist.entries) {
+  // for (final MapEntry(key: key, value: count) in hist.entries) {
   //   print('$key occurred $count times');
   // }
 
   /// For same name, just use `:key` instead of `key: key`
-  for (var MapEntry(:key, value: count) in hist.entries) {
+  for (final MapEntry(:key, value: count) in hist.entries) {
     print('$key occurred $count times');
   }
 }

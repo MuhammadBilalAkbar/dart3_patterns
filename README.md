@@ -297,7 +297,7 @@ Map<String, int> hist = {
 'b': 100,
 };
 
-for (var MapEntry(key: key, value: count) in hist.entries) {
+for (final MapEntry(key: key, value: count) in hist.entries) {
 print('$key occurred $count times');
 }
 ```
@@ -310,7 +310,7 @@ Binding the result of a getter call to a variable of the same name is a common u
 you to simplify the variable pattern from something redundant like key: key to just :key:
 
 ```dart 
-for (var MapEntry(:key, value: count) in hist.entries) {
+for (final MapEntry(:key, value: count) in hist.entries) {
 print('$key occurred $count times');
 }
 ```
