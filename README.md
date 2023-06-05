@@ -284,7 +284,7 @@ print('Non-empty symmetric shape');
 }
 ```
 
-### For and for in loops
+### For and for in-loops
 
 You can use patterns in for and for-in loops to iterate-over and destructure values in a collection.
 
