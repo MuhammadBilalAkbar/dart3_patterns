@@ -102,7 +102,7 @@ represents the shape of a set of values that it may match against actual values.
     - [Variable declaration](#Variable-declaration)
     - [Variable assignment](#Variable-assignment)
     - [Switch statements and expressions](#Switch-statements-and-expressions)
-    - [For and for in loops](#For-and-for-in-loops)
+    - [For and for in-loops](#For-and-for-in-loops)
 3. [Uses cases for patterns](#Uses-cases-for-patterns)
     - [Destructuring multiple returns](#Destructuring-multiple-returns)
     - [Destructuring class instances](#Destructuring-class-instances)
