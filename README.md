@@ -23,6 +23,7 @@ in `lib/`, and example unit test in `test/`.
 **Flutter Videos/Articles**
 
 - 3.1K: https://youtu.be/j3fzeDpd2ts
+- 19K: https://youtu.be/dBwvc-U8q-c?t=510
 - https://dart.dev/language/patterns
 - https://github.com/dart-lang/language/blob/main/accepted/future-releases/0546-patterns/feature-specification.md
 
@@ -113,8 +114,7 @@ represents the shape of a set of values that it may match against actual values.
 ## What patterns do
 
 In general, a pattern may `match a value`, `de-structure a value`, or both, depending on the context
-and
-shape of the pattern.
+and shape of the pattern.
 
 First, pattern matching allows you to check whether a given value:
 
@@ -234,6 +234,9 @@ print('$a $b'); // Prints "right left".
 
 Every case clause contains a pattern. This applies to switch statements and expressions, as well as
 if-case statements. You can use any kind of pattern in a case.
+
+**For non empty statements in switch cases, you don't need to put `break`. But for empty statements
+you need to put `break` otherwise it will return `default` case of switch statement.**
 
 Case patterns are refutable(a pattern that can be tested against a value to determine if the pattern
 matches the value). They allow control flow to either:
@@ -365,11 +368,11 @@ To destructure an instance of a class, use the named type, followed by the prope
 enclosed in parentheses:
 
 ```dart
-  void main() {
+void main() {
   final myFoo = Foo(one: 'one', two: 2);
   print(myFoo);
-  final Foo(:one, :two) = myFoo;
-  print('one $one, two $two');
+  final Foo(:one, two: twooo) = myFoo;
+  print('one $one, two $twooo');
 }
 
 class Foo {
@@ -483,11 +486,113 @@ lower-precedence to higher-precedence:
 9. Identifier (foo, _)
 10. Parenthesized (`(subpattern)` with lower-precedence will be solved first)
 11. List (`[subpattern1, subpattern2]`)
-    - Rest element (List patterns can contain one rest element (...) which allows matching lists of
+    - **Rest element** (List patterns can contain one rest element (...) which allows matching lists
+      of
       arbitrary lengths)
 12. Map (`{"key": subpattern1, someConst: subpattern2}`)
 13. Record (`(subpattern1, subpattern2)`, `(x: subpattern1, y: subpattern2)`)
 14. Object (`SomeClass(x: subpattern1, y: subpattern2)`)
 15. Wildcard (`_` this element is required in callback but not used inside the function)
+
+#### Parenthesized
+
+Like parenthesized expressions, parentheses in a pattern let you control pattern precedence and
+insert a lower-precedence pattern where a higher precedence one is expected.
+
+For example, imagine the boolean constants x, y, and z are equal to true, true, and false,
+respectively:
+
+```dart 
+// ...
+x || y && z => 'matches true',
+(x || y) && z => 'matches false',
+// ...
+```
+
+In the first case, the logical-and pattern y && z evaluates first because logical-and patterns have
+higher precedence than logical-or. In the next case, the logical-or pattern is parenthesized. It
+evaluates first, which results in a different match.
+
+#### List
+
+A list pattern matches values that implement List, and then recursively matches its subpatterns
+against the list’s elements to destructure them by position:
+
+```dart
+void main() {
+  final listItems = ['Hi', 'There!'];
+
+  int index = 1;
+
+  switch (listItems) {
+    case ['Hi', 'there!']:
+      print('Hi!');
+    case ['HI', 'there!']:
+      print('HI!');
+    case ['Hi', 'There!'] when index == 9:
+      print('Hi! when index is 9');
+    case ['Hi' || 'H', 'There!' || 'there'] when index == 1:
+      print('Hi! when index is 1');
+  // case _:
+    default:
+      print('did not match');
+  }
+
+  final answer = switch (listItems) {
+    ['Hi', 'there!'] => 'Hi!',
+    ['HI', 'there!'] => 'HI!',
+    ['Hi', 'There!'] when index == 9 => 'Hi! when index is 9',
+    ['Hi' || 'H', 'There!' || 'there'] when index == 1 => 'Hi! when index is 1',
+    _ => 'did not match',
+  };
+  print(answer);
+}
+```
+
+List patterns require that the number of elements in the pattern match the entire list. You can,
+however, use a rest element as a place holder to account for any number of elements in a list.
+
+#### Rest element
+
+List patterns can contain one rest element (...) which allows matching lists of arbitrary lengths.
+
+```dart
+var [a, b, ..., c, d] = [1, 2, 3, 4, 5, 6, 7];
+// Prints "1 2 6 7".
+print('$a $b $c $d'
+);
+```
+
+A rest element can also have a subpattern that collects elements that don’t match the other
+subpatterns in the list, into a new list:
+
+```dart 
+var [a, b, ...rest, c, d] = [1, 2, 3, 4, 5, 6, 7];
+// Prints "1 2 [3, 4, 5] 6 7".
+print('$a $b $rest $c $d');
+```
+
+#### Wildcard (_)
+
+A pattern named _ is a wildcard, either a variable pattern or identifier pattern, that doesn’t bind
+or assign to any variable.
+
+It’s useful as a placeholder in places where you need a subpattern in order to destructure later
+positional values:
+
+```dart 
+var list = [1, 2, 3];
+var [_, two, _] = list;
+```
+
+A wildcard name with a type annotation is useful when you want to test a value’s type but not bind
+the value to a name:
+
+```dart 
+switch (record) {
+case (int _, String _):
+print('First field is int and second is String.');
+}
+```
 
 For more details visit [pattern types](https://dart.dev/language/pattern-types).

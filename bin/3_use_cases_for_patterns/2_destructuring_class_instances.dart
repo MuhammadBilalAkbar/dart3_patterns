@@ -1,8 +1,8 @@
 void main() {
   final myFoo = Foo(one: 'one', two: 2);
-  print(myFoo);
-  final Foo(:one, :two) = myFoo;
-  print('one $one, two $two');
+
+  final Foo(:one, two: two) = myFoo;
+  print('$one, $two');
 }
 
 class Foo {

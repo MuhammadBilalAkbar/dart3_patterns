@@ -2,7 +2,6 @@ void main() {
   final json = {
     'user': ['Lily', 13]
   };
-  final {'user': [name, age]} = json;
 
   /// Without using patterns
   // if (json.length == 1 && json.containsKey('user')) {
