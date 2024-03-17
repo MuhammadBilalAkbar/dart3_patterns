@@ -1,7 +1,7 @@
 // ignore_for_file: pattern_never_matches_value_type
 
 void main() {
-  final obj = 1asdfads;
+  final obj = 1;
   // final obj = (2,3);
   const first = 1;
   const last = 5;
