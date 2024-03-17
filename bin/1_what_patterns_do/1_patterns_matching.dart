@@ -3,7 +3,6 @@
 void main() {
   final number = 1;
   switch (number) {
-    // Constant pattern matches if 1 == number.
     case 1:
       print('one');
   }
@@ -15,8 +14,6 @@ void main() {
   const b = 'b';
   obj.add(b);
   switch (obj) {
-    // List pattern [a, b] matches obj first if obj is a list with two fields,
-    // then if its fields match the constant subpatterns 'a' and 'b'.
     case [a, b]:
       print('$a, $b');
   }

@@ -2,7 +2,6 @@
 /// and extract it in parts. In other words, the pattern destructures the object.
 void main() {
   final numbersList = [1, 2, 3];
-// List pattern [a, b, c] destructures the three elements from numList and assigns them to new variables.
   final [a, b, c] = numbersList;
   print(a + b + c);
 

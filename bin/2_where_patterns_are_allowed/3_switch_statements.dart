@@ -1,8 +1,8 @@
 void main() {
-  final obj = 1;
+  final obj = 10;
   // final obj = (2,3);
   const first = 1;
-  const last = 10;
+  const last = 5;
 
   switch (obj) {
     // Matches if 1 == obj.
@@ -13,9 +13,9 @@ void main() {
     case >= first && <= last:
       print('in range');
 
-    // Matches if the value of obj is 1 or 2 or 3.
+    // Matches if the value of obj is 9 or 10.
     case 9 || 10 :
-      print('value of obj is 1 or 2 or 3');
+      print('value of obj is 9 or 10');
 
     // True when obj is 4 and first and last are equal
     case 4 when first == last:
