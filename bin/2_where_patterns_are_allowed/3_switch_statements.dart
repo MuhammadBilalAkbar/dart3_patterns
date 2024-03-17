@@ -1,5 +1,7 @@
+// ignore_for_file: pattern_never_matches_value_type
+
 void main() {
-  final obj = 10;
+  final obj = 1;
   // final obj = (2,3);
   const first = 1;
   const last = 5;
@@ -14,7 +16,7 @@ void main() {
       print('in range');
 
     // Matches if the value of obj is 9 or 10.
-    case 9 || 10 :
+    case 9 || 10:
       print('value of obj is 9 or 10');
 
     // True when obj is 4 and first and last are equal
