@@ -7,7 +7,6 @@ void main() {
       print('one');
   }
 
-  /// Patterns match recursively on their subpatterns.
   List<String> obj = [];
   const a = 'a';
   obj.add(a);
